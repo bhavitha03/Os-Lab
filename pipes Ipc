@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <unistd.h>
+
+
+int main() {
+    int fd[2];
+    char buffer[30];
+
+
+    if (pipe(fd) == -1) {
+        perror("pipe");
+        return 1;
+    }
+
+
+    if (fork() == 0) { // Child process
+        close(fd[0]); // Close read end
+        write(fd[1], "Hello from child", 16);
+        close(fd[1]);
+    } else { // Parent process
+        close(fd[1]); // Close write end
+        read(fd[0], buffer, sizeof(buffer));
+        printf("Received from child: %s\n", buffer);
+        close(fd[0]);
+    }
+
+
+    return 0;
+}
