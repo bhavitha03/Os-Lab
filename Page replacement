@@ -1,0 +1,49 @@
+#include<stdio.h>
+int main(){
+    int input[] = {4,1,2,4,5};
+    int misses = 0;
+    int frames = 3;
+    int i,j,s,pages;
+    pages = sizeof(input)/sizeof(input[0]);
+    printf("input\t\tframe1\tframe2\tframe3");
+    int temp[frames];
+    for(i=0;i<frames;i++)
+    {
+        temp[i] = -1;
+    }
+    for(i=0;i<pages;i++){
+        s==0;
+        for(j=0;j<frames;j++)
+        {
+            if(input[i]==temp[j])
+            {
+                s++;
+                misses--;
+            }
+        }
+        misses++;
+        if((misses<=frames)&&(s==0))
+        {
+            temp[i]=input[i];
+        }
+        else if(s==0)
+        {
+            temp[(misses-1)%frames]=input[i];
+        }
+        printf("\n");
+        printf("%d\t\t",input[i]);
+        for(j=0;j<frames;j++)
+        {
+            if(temp[j]!=-1)
+            {
+                printf("%d\t\t",temp[j]);
+            }
+            else
+            {
+                printf("-\t\t");
+            }
+        }
+    }
+    printf("\n Total no of pageFault:\t %d\n",misses);
+    return 0;
+}
