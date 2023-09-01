@@ -1,0 +1,40 @@
+#include<stdlib.h>
+#include<stdio.h>
+#define max 100
+int main(){
+		int pg[max],i,n,f,pn,ps,off;
+		int choice=0;
+		printf("Enter no of pages in memory: ");
+		scanf("%d",&n);
+		printf("Enter page size: ");
+		scanf("%d",&ps);
+		printf("Enter no of frames: ");
+		scanf("%d",&f);
+		for(i=0;i<n;i++)
+				pg[i] = -1;
+				printf("Enter the page table:\n");
+				printf("Page number as -1 if the page is not present in any frames\n ");
+				printf("pageno\tframeno\t\n");
+				for(i=0;i<n;i++)
+				{
+						printf("\n%d\t",i);
+						scanf("%d",&pg[i]);
+				}
+				do{
+						printf("Enter the logical address: ");
+						scanf("%d%d",&pn,&off);
+						if(pg[pn]==-1)
+						{
+								printf("Page not available");
+						}
+						else
+						{
+								printf("\nPhysical Address: %d %d",pg[pn],off);
+								printf("\nDo you want to continue(1/0): ");
+								scanf("%d",&choice);
+						}
+				}
+				while(choice==1);
+				return 1;
+		
+}
